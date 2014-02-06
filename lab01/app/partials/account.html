@@ -1,9 +1,23 @@
 <div>
 	<h2> Check-In History for {{ current.firstName }}</h2>
-	<HR>
-	<ul ng-repeat="item in current.checkins.items">
-		<li> {{item }} </li>
-	</ul>
+	<HR/>
+	<div class="row">
+		<div class="col-xs-4">
+			Venue
+		</div>
+		<div class="col-xs-4">
+			Address
+		</div>
+		<div class="col-xs-4">
+			Check-In Count
+		</div>
+	</div>
+	<HR/>
+	<div class="row" ng-repeat="item in current.checkins.items">
+		<div class="col-xs-4"> {{item.venue.name }} </div>
+		<div class="col-xs-4"> {{item.venue.location.address }} </div>
+		<div class="col-xs-4"> {{item.venue.stats.checkinsCount }} </div>
+	</div>
 </div>
 </div>
 

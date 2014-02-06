@@ -58,6 +58,25 @@ module.exports = {
 		})
 	},
 
+	update: function(user, cb) {
+		console.log('Updating User: ' + JSON.stringify(user));
+		openFile(function(err, users) {
+			if (err) {
+				cb(err)
+			} else if (users[user.id] == undefined) {
+				cb(null, {
+					error: true,
+					message: 'No User Exists'
+				});
+			} else {
+				users[user.id] = user;
+				saveFile(users, function(err) {
+					cb(err, user);
+				});
+			}
+		})
+	},
+
 	findOrCreate: function(user, cb) {
 		module.exports.getById(user.id, function(err, response) {
 			console.log(response);
@@ -66,7 +85,7 @@ module.exports = {
 			} else if (Object.keys(response).length == 0) {
 				module.exports.create(user, cb);
 			} else {
-				cb(null, response);
+				module.exports.update(user, cb);
 			}
 		})
 	}

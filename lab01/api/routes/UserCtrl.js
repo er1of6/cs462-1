@@ -22,7 +22,6 @@ module.exports = {
 			else
 				res.send(200, result);
 		})
-
 	},
 
 	getAll: function(req, res, next) {
