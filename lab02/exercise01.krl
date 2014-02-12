@@ -17,9 +17,10 @@ ruleset b505214x1 {
     }
     
     rule second_rule {
-        pre {
-            name == "";
-            notify("Hello " + name || "Monkey");
+        every {
+            query = page:url("query");
+            notify("Hello " + "World);
+            notify(query);
         }
     
     }
