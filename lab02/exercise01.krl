@@ -21,7 +21,8 @@ ruleset b505214x1 {
         select when pageview ".*" setting ()
         
         pre {
-            query = page:url("query")
+            query = page:url("query") 
+            name = (query.length() > 0) => query | "Monkey";
         }
         
         every {
