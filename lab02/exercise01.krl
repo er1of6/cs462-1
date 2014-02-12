@@ -26,11 +26,12 @@ ruleset b505214x1 {
             add5 = function(x) {
                 x + 5
             };
+            //test = 
         }
         
         every {
             notify("Hello " + name, "This is another sample rule.") with sticky = true;
-            notify(add5(7), "test) with sticky = true;
+            notify(add5(7), "test") with sticky = true;
         }
     }
 }
