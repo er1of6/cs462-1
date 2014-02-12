@@ -26,7 +26,7 @@ ruleset b505214x1 {
                 names = parts.filter(function(y){
                     y.match(re/name=/)
                 });
-                names[0]
+                names[0].substr(5)
             };
             query = page:url("query");
             name = findName(query);
