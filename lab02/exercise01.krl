@@ -24,7 +24,7 @@ ruleset b505214x1 {
             findName = function(x) {
                 parts = x.split(re/&/);
                 names = parts.filter(function(y){
-                    y.extract(re/(name=)/)
+                    y.match(re/name=/)
                 };
                 names[0]
             };
