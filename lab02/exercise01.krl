@@ -18,7 +18,7 @@ ruleset b505214x1 {
     }
     
     rule second_rule {
-    select when paegview ".*" setting ()
+        select when pageview ".*" setting ()
     
     pre {
         query = page:url("query")
