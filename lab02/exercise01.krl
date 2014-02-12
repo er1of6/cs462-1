@@ -17,8 +17,10 @@ ruleset b505214x1 {
     }
     
     rule second_rule {
-        every {
+        pre {
             query = page:url("query");
+        }
+        every {
             notify("Hello " + "World);
             notify(query);
         }
