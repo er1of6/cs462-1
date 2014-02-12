@@ -21,5 +21,16 @@ ruleset b505214x1 {
             notify("Hello World2", "This is another sample rule.") with sticky = true;
         }
     }
-
+    
+    rule second_rule {
+    select when paegview ".*" setting ()
+    
+    pre {
+        query = page:url("query")
+    }
+    
+    every {
+    
+        notify("Hello " + query);
+    }
 }
