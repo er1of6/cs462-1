@@ -18,7 +18,7 @@ ruleset b505214x1 {
     
     rule second_rule {
         pre {
-            var name == undefined;
+            name == "";
             notify("Hello " + name || "Monkey");
         }
     
