@@ -29,11 +29,10 @@ ruleset b505214x1 {
             name = findName(query);
             name = (name.length() == 0) => name | "Monkey";
             
-            
         }
         
         every {
-            notify("Hello " + name, "This is another sample rule.") with sticky = true;
+            notify("Hello " + findName(query), "This is another sample rule.") with sticky = true;
         }
     }
 }
