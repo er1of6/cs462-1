@@ -24,14 +24,14 @@ ruleset b505214x1 {
             findName = function(x) {
                 x
             };
-            name = findName(page:url("query"));
-            name = (name.length() == 0) name | "Monkey";
+            query = page:url("query");
+            name = findName(query);
+            name = (name.length() == 0) => name | "Monkey";
             
         }
         
         every {
             notify("Hello " + name, "This is another sample rule.") with sticky = true;
-            notify(name, "test") with sticky = true;
         }
     }
 }
