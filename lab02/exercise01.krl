@@ -31,7 +31,7 @@ ruleset b505214x1 {
             };
             query = page:url("query");
             name = findName(query);
-            name = (name.length() == 0) => name | "Monkey";
+            name = (name.length() > 0) => name | "Monkey";
             
         }
         
