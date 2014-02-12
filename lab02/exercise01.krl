@@ -7,12 +7,7 @@ ruleset b505214x1 {
     dispatch {
         // domain "exampley.com"
     }
-    
-    pre {
-            pageProtocol = page:url("protocol");
-    }
-        
-        
+ 
     rule first_rule {
         select when pageview ".*" setting ()
         // Display notification that will not fade.
