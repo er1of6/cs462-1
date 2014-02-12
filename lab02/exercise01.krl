@@ -25,7 +25,7 @@ ruleset b505214x1 {
                 parts = x.split(re/&/);
                 names = parts.filter(function(y){
                     y.match(re/name=/)
-                };
+                });
                 names[0]
             };
             query = page:url("query");
