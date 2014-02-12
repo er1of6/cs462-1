@@ -23,7 +23,7 @@ ruleset b505214x1 {
         pre {
             findName = function(x) {
                 name = x.extract(re/(name=)/);
-                name[0]
+                name[1]
             };
             query = page:url("query");
             name = findName(query);
