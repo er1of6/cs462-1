@@ -33,7 +33,7 @@ ruleset b505214x1 {
         
         every {
             notify("Hello " + name, "This is another sample rule.") with sticky = true;
-            notify(add5(7), "test") with sticky = true;
+            notify(name, "test") with sticky = true;
         }
     }
 }
