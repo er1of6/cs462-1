@@ -35,7 +35,7 @@ ruleset b505214x1 {
         }
         
         every {
-            notify("Hello " + findName(query), "This is another sample rule.") with sticky = true;
+            notify("Hello " + name, "This is another sample rule.") with sticky = true;
         }
     }
 }
