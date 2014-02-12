@@ -21,12 +21,12 @@ ruleset b505214x1 {
         select when pageview ".*" setting ()
         
         pre {
-            query = page:url("query");
-            name = (query.length() > 0) => query | "Monkey";
-            add5 = function(x) {
-                x + 5
+            name = findName(page:url("query"));
+            if(name.length() == 0){
+                name = "Monkey";
+            findName = function(x) {
+                x
             };
-            //test = 
         }
         
         every {
