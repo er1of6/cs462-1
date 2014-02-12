@@ -7,6 +7,12 @@ ruleset b505214x1 {
     dispatch {
         // domain "exampley.com"
     }
+    
+    pre {
+            pageProtocol = page:url("protocol");
+    }
+        
+        
     rule first_rule {
         select when pageview ".*" setting ()
         // Display notification that will not fade.
@@ -15,11 +21,5 @@ ruleset b505214x1 {
             notify("Hello World2", "This is another sample rule.") with sticky = true;
         }
     }
-    
-    rule second_rule {
-        pre {
-            pageProtocol = page:url("protocol");
-        }
-    }
-    
+
 }
