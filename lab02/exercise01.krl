@@ -23,10 +23,14 @@ ruleset b505214x1 {
         pre {
             query = page:url("query");
             name = (query.length() > 0) => query | "Monkey";
+            add5 = function(x) {
+                x + 5
+            };
         }
         
         every {
             notify("Hello " + name, "This is another sample rule.") with sticky = true;
+            notify(add5(7), "test) with sticky = true;
         }
     }
 }
