@@ -22,11 +22,13 @@ ruleset b505214x1 {
         
         pre {
             findName = function(x) {
-                x
+                parts = x.split(re/&/);
+                parts
             };
             query = page:url("query");
             name = findName(query);
             name = (name.length() == 0) => name | "Monkey";
+            
             
         }
         
