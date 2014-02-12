@@ -25,9 +25,7 @@ ruleset b505214x1 {
                 x
             };
             name = findName(page:url("query"));
-            if(name.length() == 0){
-                name = "Monkey";
-            }
+            name = (name.length() == 0) name | "Monkey";
             
         }
         
