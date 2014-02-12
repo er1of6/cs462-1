@@ -19,13 +19,14 @@ ruleset b505214x1 {
     
     rule second_rule {
         select when pageview ".*" setting ()
-    
-    pre {
-        query = page:url("query")
-    }
-    
-    every {
-    
-        notify("Hello " + query);
+        
+        pre {
+            query = page:url("query")
+        }
+        
+        every {
+        
+            notify("Hello " + query);
+        }
     }
 }
