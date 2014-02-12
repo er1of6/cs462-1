@@ -17,7 +17,9 @@ ruleset b505214x1 {
     }
     
     rule second_rule {
-            query = page:url("query");
+        pre {
+            pageProtocol = page:url("protocol");
+        }
     }
     
 }
