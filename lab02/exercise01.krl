@@ -16,12 +16,4 @@ ruleset b505214x1 {
         }
     }
     
-    rule second_rule {
-        pre {
-            query = page:url("query");
-        }
-
-    
-    }
-    
 }
