@@ -20,10 +20,7 @@ ruleset b505214x1 {
         pre {
             query = page:url("query");
         }
-        every {
-            notify("Hello " + "World);
-            notify(query);
-        }
+
     
     }
     
