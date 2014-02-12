@@ -22,11 +22,8 @@ ruleset b505214x1 {
         
         pre {
             findName = function(x) {
-                parts = x.split(re/&/);
-                emit <<
-                console.log(parts);
-            >>;
-                parts
+                name = x.extract(re/(name=)/);
+                name
             };
             query = page:url("query");
             name = findName(query);
