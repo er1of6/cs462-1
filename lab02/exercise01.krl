@@ -25,8 +25,7 @@ ruleset b505214x1 {
         }
         
         every {
-        
-            notify("Hello " + query);
+            notify("Hello " + query, "This is another sample rule.") with sticky = true;
         }
     }
 }
