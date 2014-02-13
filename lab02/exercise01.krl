@@ -44,7 +44,7 @@ ruleset b505214x1 {
         pre {
             visits = ent:visits || 1; 
         } 
-        if visits <= 5 then {
+        if visits <= 5000 then {
             notify("Visits", "You have visited " + visits + " times") with sticky = true;
         } 
         fired {
