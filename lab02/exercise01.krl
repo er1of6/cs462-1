@@ -12,8 +12,8 @@ ruleset b505214x1 {
         select when pageview ".*" setting ()
         // Display notification that will not fade.
         every {
-            notify("Hello World1", "This is a sample rule.") with sticky = true;
-            notify("Hello World2", "This is another sample rule.") with sticky = true;
+            notify("Hello World1", "Notification #1") with sticky = true;
+            notify("Hello World2", "Notification #2") with sticky = true;
         }
     }
     
@@ -32,11 +32,23 @@ ruleset b505214x1 {
             query = page:url("query");
             name = findName(query);
             name = (name.length() > 0) => name | "Monkey";
-            
         }
         
         every {
             notify("Hello " + name, "This is another sample rule.") with sticky = true;
         }
+    }
+    
+    rule couting_rule {
+    
+    pre {
+     c = 1;
+    }
+    
+    every {
+        notify("third rule", "example text") with sticky = true;
+    
+    }
+    
     }
 }
