@@ -48,7 +48,7 @@ ruleset b505214x1 {
             notify("Visits", "You have visited " + visits + " times") with sticky = true;
         } 
         fired {
-            ent:visits += 1 from 1;
+            ent:visits += 1 from 2;
         }
     }
     
