@@ -57,7 +57,10 @@ ruleset b505214x1 {
         } 
         if visits <= 5 then {
             notify("Visits", "You have visited " + visits + " times") with sticky = true;
-            notify("Clear", "VAlue is " + name + " <--");
+        }
+        
+        if name == true then {
+            notify("Clear", "VAlue is " + name + " <--") with sticky = true;
         }
             
         fired { 
