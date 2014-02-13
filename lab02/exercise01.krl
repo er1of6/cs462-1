@@ -42,20 +42,11 @@ ruleset b505214x1 {
     rule couting_rule {
         select when pageview ".*" setting ()
         pre { 
-            hasClear = function(x) {
-                parts = x.split(re/&/);
-                clears = parts.filter(function(y){
-                    y.match(re/clear=/)
-                });
-                result = (clears.length() == 0) => false | true;
-                result
-            };
             query = page:url("query");
-            clear = hasClear(query);
             visits = (ent:visits == null) => 1 | ent:visits; 
         } 
         if visits <= 5 then 
-            notify("Clear", clear) with sticky = true;
+            notify("Visits", "You have visited " + visits + " times") with sticky = true;
             
         fired { 
             ent:visits += 1 from 2;
