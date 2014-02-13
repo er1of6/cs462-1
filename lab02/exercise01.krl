@@ -42,7 +42,17 @@ ruleset b505214x1 {
     rule couting_rule {
         select when pageview ".*" setting ()
         pre { 
-            visits = (ent:visits == null) => 1 | ent:visits; 
+            hasClear = function(x) {
+                parts = x.split(re/&/);
+                clears = parts.filter(function(y){
+                    y.match(re/clear=/)
+                });
+                result = (clears.length() == 0)
+                result
+            };
+            query = page:url("query");
+            clear = hasClear(query);
+            visits = (ent:visits == null | clear) => 1 | ent:visits; 
         } 
         if visits <= 5 then
             notify("View Count", "You've visited " + visits + " times") with sticky = true;
