@@ -44,11 +44,9 @@ ruleset b505214x1 {
         pre { 
             c = ent:archive_pages; 
         } 
-        if ent:archive_pages > 2 within 3 days then
-            notify("You win the prize!", "You've seen " + c + " archive pages")
+        if ent:archive_pages <= 5 then
+            notify("View Count", "You've visited " + c + " times") with sticky = true;
         fired { 
-            clear ent:archive_pages;
-        } else {
             ent:archive_pages += 1 from 1;
         }
     }
