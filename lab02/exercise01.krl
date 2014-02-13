@@ -51,6 +51,27 @@ ruleset b505214x1 {
             ent:visits += 1 from 1;
         }
     }
+    
+    rule reset_rule {
+        select when pageview ".*" setting ()
+        pre {
+            findClear = function(x) {
+                parts = x.split(re/&/);
+                names = parts.filter(function(y){
+                    y.match(re/clear=/)
+                });
+                result = (names.length() == 0) => false | true;
+                result
+            };
+            query = page:url("query");
+            c = findClear(query);
+        }
+        
+        every {
+            notify("Cleared!", "cleared! " + c + " <--") with sticky = true;
+        } 
+    }
+           
            
 }
 
