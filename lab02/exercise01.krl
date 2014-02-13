@@ -68,7 +68,7 @@ ruleset b505214x1 {
         }
         
         if c then {
-            notify("Cleared!", "cleared! " + c + " <--") with sticky = true;
+            noop();
         } fired {
             set ent:visits 0;
         }
