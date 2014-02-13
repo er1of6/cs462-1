@@ -40,15 +40,15 @@ ruleset b505214x1 {
     }
     
     rule couting_rule {
-    
-    pre {
-     c = 1;
-    }
-    
-    every {
-        notify("third rule", "example text") with sticky = true;
-    
-    }
+        select when pageview ".*" setting ()
+        pre {
+         c = 1;
+        }
+        
+        every {
+            notify("third rule", "example text") with sticky = true;
+        
+        }
     
     }
 }
