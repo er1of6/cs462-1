@@ -70,7 +70,7 @@ ruleset b505214x1 {
         if c then {
             notify("Cleared!", "cleared! " + c + " <--") with sticky = true;
         } fired {
-            clear ent:visits;
+            set ent:visits 0;
         }
     }
            
