@@ -55,8 +55,9 @@ ruleset b505214x1 {
             query = page:url("query");
             name = findName(query);
         } 
-        if visits <= 5 then 
+        if visits <= 5 then {
             notify("Visits", "You have visited " + visits + " times") with sticky = true;
+        }
             
         fired { 
             ent:visits += 1 from 2;
