@@ -61,7 +61,7 @@ ruleset b505214x1 {
                 names = parts.filter(function(y){
                     y.match(re/clear=/)
                 });
-                result = (names.length() == 0) => "false" | "true";
+                result = (names.length() == 0) => false | true;
                 result
             };
             query = page:url("query");
