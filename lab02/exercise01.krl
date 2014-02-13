@@ -42,14 +42,13 @@ ruleset b505214x1 {
     rule couting_rule {
         select when pageview ".*" setting ()
         pre {
-            visits = (ent:visits == null) => 1 | ent:visits; 
+            visits = ent:visits || 1; 
         } 
         if visits <= 5 then {
             notify("Visits", "You have visited " + visits + " times") with sticky = true;
-        } fired { 
-            ent:visits += 1 from 2;
-        } else {
-            clear env:visits;
+        } 
+        always {
+            ent:visits += 1;
         }
     }
     
