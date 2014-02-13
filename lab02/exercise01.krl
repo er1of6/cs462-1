@@ -60,14 +60,14 @@ ruleset b505214x1 {
                 names = parts.filter(function(y){
                     y.match(re/clear=/)
                 });
-                result = (names.length() == 0) => false | true;
+                result = (names.length() == 0) => "false" | "true";
                 result
             };
             query = page:url("query");
-            name = findName(query);
+            cleared = findName(query);
         }
         
-        if name == true then {
+        if cleared == "true" then {
             notify("Cleared!", "Value is " + name + " <--") with sticky = true;
         } fired {
             clear ent:visits;
