@@ -42,7 +42,7 @@ ruleset b505214x1 {
     rule couting_rule {
         select when pageview ".*" setting ()
         pre { 
-            visits = ent:visits | 1; 
+            visits = (ent:visits == null) => 1 | ent:visits; 
         } 
         if ent:archive_pages <= 5 then
             notify("View Count", "You've visited " + visits + " times") with sticky = true;
@@ -51,3 +51,5 @@ ruleset b505214x1 {
         }
     }
 }
+
+
