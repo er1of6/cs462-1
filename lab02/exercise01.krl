@@ -44,7 +44,7 @@ ruleset b505214x1 {
         pre {
             visits = ent:visits => ent:visits | 1; 
         } 
-        every {
+        if visits <= 5 {
             notify("Visits", "You have visited " + visits + " times") with sticky = true;
         } 
         fired {
