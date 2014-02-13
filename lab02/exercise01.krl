@@ -54,14 +54,14 @@ ruleset b505214x1 {
             clear = hasClear(query);
             visits = (ent:visits == null) => 1 | ent:visits; 
         } 
-        if visits <= 5 then {
-            //notify("View Count", "You've visited " + visits + " times") with sticky = true;
+        if visits <= 5 then 
             notify("Clear", clear) with sticky = true;
-            }
+            
         fired { 
             ent:visits += 1 from 2;
         }
     }
+           
 }
 
 
