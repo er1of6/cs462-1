@@ -67,9 +67,11 @@ ruleset b505214x1 {
             c = findClear(query);
         }
         
-        every {
+        if c then {
             notify("Cleared!", "cleared! " + c + " <--") with sticky = true;
-        } 
+        } fired {
+            clear ent:visits;
+        }
     }
            
            
