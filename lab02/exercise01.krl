@@ -57,15 +57,13 @@ ruleset b505214x1 {
         } 
         if visits <= 5 then {
             notify("Visits", "You have visited " + visits + " times") with sticky = true;
-        }
+        } fired { 
+            ent:visits += 1 from 2;
+        } 
         
         if name == true then {
-            notify("Clear", "VAlue is " + name + " <--") with sticky = true;
-        }
-            
-        fired { 
-            ent:visits += 1 from 2;
-        } else {
+            notify("Cleared!", "Value is " + name + " <--") with sticky = true;
+        } fired {
             clear ent:visits;
         }
     }
