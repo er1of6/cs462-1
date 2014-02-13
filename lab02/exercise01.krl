@@ -51,7 +51,7 @@ ruleset b505214x1 {
         fired { 
             ent:visits += 1 from 2;
         } else {
-            ent:visits = 1;
+            clear ent:visits;
         }
     }
            
