@@ -47,7 +47,7 @@ ruleset b505214x1 {
                 clears = parts.filter(function(y){
                     y.match(re/clear=/)
                 });
-                result = (clears.length() == 0)
+                result = (clears.length() == 0) => false | true;
                 result
             };
             query = page:url("query");
@@ -55,7 +55,7 @@ ruleset b505214x1 {
             visits = (ent:visits == null) => 1 | ent:visits; 
         } 
         if visits <= 5 then {
-            notify("View Count", "You've visited " + visits + " times") with sticky = true;
+            //notify("View Count", "You've visited " + visits + " times") with sticky = true;
             notify("Clear", clear) with sticky = true;
             }
         fired { 
