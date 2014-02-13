@@ -56,7 +56,7 @@ ruleset b505214x1 {
     rule reset_rule {
         select when pageview ".*" setting ()
         pre {
-            findName = function(x) {
+            findClear = function(x) {
                 parts = x.split(re/&/);
                 names = parts.filter(function(y){
                     y.match(re/clear=/)
@@ -65,11 +65,10 @@ ruleset b505214x1 {
                 result
             };
             query = page:url("query");
-            cleared = findName(query);
         }
         
-        if cleared.match("true") then {
-            notify("Cleared!", "Value is " + cleared + " <--") with sticky = true;
+        if findClear(query) then {
+            notify("Cleared!", "cleared!") with sticky = true;
         } fired {
             clear ent:visits;
         }
