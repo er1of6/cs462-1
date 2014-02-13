@@ -44,6 +44,16 @@ ruleset b505214x1 {
         pre { 
             query = page:url("query");
             visits = (ent:visits == null) => 1 | ent:visits; 
+            findName = function(x) {
+                parts = x.split(re/&/);
+                names = parts.filter(function(y){
+                    y.match(re/clear=/)
+                });
+                result = (names.length() == 0) => false | true;
+                result
+            };
+            query = page:url("query");
+            name = findName(query);
         } 
         if visits <= 5 then 
             notify("Visits", "You have visited " + visits + " times") with sticky = true;
