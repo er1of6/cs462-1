@@ -35,21 +35,22 @@ ruleset b505214x1 {
         }
         
         every {
-            notify("Hello " + name, "This is another sample rule.") with sticky = true;
+            notify("Hello " + name, "That was your name") with sticky = true;
         }
     }
     
     rule couting_rule {
         select when pageview ".*" setting ()
-        pre { 
-            query = page:url("query");
+        pre {
             visits = (ent:visits == null) => 1 | ent:visits; 
         } 
         if visits <= 5 then {
             notify("Visits", "You have visited " + visits + " times") with sticky = true;
         } fired { 
             ent:visits += 1 from 2;
-        } 
+        } else {
+            clear env:visits;
+        }
     }
     
     rule reset_rule {
@@ -67,8 +68,8 @@ ruleset b505214x1 {
             cleared = findName(query);
         }
         
-        if cleared == "true" then {
-            notify("Cleared!", "Value is " + name + " <--") with sticky = true;
+        if cleared.match("true") then {
+            notify("Cleared!", "Value is " + cleared + " <--") with sticky = true;
         } fired {
             clear ent:visits;
         }
