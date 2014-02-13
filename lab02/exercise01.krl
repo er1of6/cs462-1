@@ -24,7 +24,7 @@ ruleset b505214x1 {
             findName = function(x) {
                 parts = x.split(re/&/);
                 names = parts.filter(function(y){
-                    y.match(re/name=/)
+                    y.match(re/^name=/)
                 });
                 result = (names.length() == 0) => "" | names[0].substr(5);
                 result
