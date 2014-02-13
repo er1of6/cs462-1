@@ -52,10 +52,12 @@ ruleset b505214x1 {
             };
             query = page:url("query");
             clear = hasClear(query);
-            visits = (ent:visits == null | clear) => 1 | ent:visits; 
+            visits = (ent:visits == null) => 1 | ent:visits; 
         } 
-        if visits <= 5 then
+        if visits <= 5 then {
             notify("View Count", "You've visited " + visits + " times") with sticky = true;
+            notify("Clear", clear) with sticky = true;
+            }
         fired { 
             ent:visits += 1 from 2;
         }
