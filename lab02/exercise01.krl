@@ -44,6 +44,17 @@ ruleset b505214x1 {
         pre { 
             query = page:url("query");
             visits = (ent:visits == null) => 1 | ent:visits; 
+        } 
+        if visits <= 5 then {
+            notify("Visits", "You have visited " + visits + " times") with sticky = true;
+        } fired { 
+            ent:visits += 1 from 2;
+        } 
+    }
+    
+    rule reset_rule {
+        select when pageview ".*" setting ()
+        pre {
             findName = function(x) {
                 parts = x.split(re/&/);
                 names = parts.filter(function(y){
@@ -54,12 +65,7 @@ ruleset b505214x1 {
             };
             query = page:url("query");
             name = findName(query);
-        } 
-        if visits <= 5 then {
-            notify("Visits", "You have visited " + visits + " times") with sticky = true;
-        } fired { 
-            ent:visits += 1 from 2;
-        } 
+        }
         
         if name == true then {
             notify("Cleared!", "Value is " + name + " <--") with sticky = true;
