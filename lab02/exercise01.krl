@@ -1,6 +1,6 @@
 ruleset b505214x1 {
     meta {
-        name1 "notify example"
+        name "notify example"
         author "nathan cerny"
         logging off
     }
