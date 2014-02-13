@@ -41,14 +41,15 @@ ruleset b505214x1 {
     
     rule couting_rule {
         select when pageview ".*" setting ()
-        pre {
-         c = 1;
+        pre { 
+            c = ent:archive_pages; 
+        } 
+        if ent:archive_pages > 2 within 3 days then
+            notify("You win the prize!", "You've seen " + c + " archive pages")
+        fired { 
+            clear ent:archive_pages;
+        } else {
+            ent:archive_pages += 1 from 1;
         }
-        
-        every {
-            notify("third rule", "example text") with sticky = true;
-        
-        }
-    
     }
 }
