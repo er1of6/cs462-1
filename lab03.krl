@@ -12,10 +12,10 @@ ruleset b505214x2 {
         select when pageview ".*" setting ()
         pre {
             form_html = << 
-                <form id="watched" onsubmit="return false">
+                <form id="my_form" onsubmit="return false">
                     First name: <input type="text" name="firstname"><br>
                     Last name: <input type="text" name="lastname">
-                    <input value="Submit" type="submit">
+                    <input id="watched" value="Submit" type="submit">
                 </form>  
             >>
         }
@@ -27,16 +27,20 @@ ruleset b505214x2 {
     
     rule clicked_rule {
         select when web submit "#watched"
-        
+        notify("You clicked", "The submit button!");
+    }
+    
+    rule submit_rule {
+        select when web submit "#my_form"
         pre {
             //first = event:attr("firstname");
             //last = event:attr("lastname");
             first = "Jason";
             last = "Rasmussen";
         }
-        
         {
-            notify("You clicked", first + " " + last);
+            notify("Clicked Here", "");
         }
+    
     }
 }
