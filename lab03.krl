@@ -26,7 +26,7 @@ ruleset b505214x2 {
     }
     
     rule clicked_rule {
-        select when web submit "#watched"
+        select when web click "#watched"
         notify("You clicked", "The submit button!");
     }
     
