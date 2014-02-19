@@ -29,13 +29,14 @@ ruleset b505214x2 {
         select when web click "#watched"
         
         pre {
-            first = event:attr("firstname");
-            last = event:attr("lastname");
+            //first = event:attr("firstname");
+            //last = event:attr("lastname");
+            first = "Jason";
+            last = "Rasmussen";
         }
         
         {
             notify("You clicked", first + " " + last);
-            
         }
     }
 }
