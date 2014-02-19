@@ -22,6 +22,7 @@ ruleset b505214x2 {
         {
             replace_inner('#main', form_html);
             watch("#watched", "click");
+            watch("#my_form", "submit");
         }
     }
     
