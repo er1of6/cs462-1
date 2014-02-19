@@ -26,7 +26,7 @@ ruleset b505214x2 {
     }
     
     rule clicked_rule {
-        select when web click "#watched"
+        select when web submit "#watched"
         
         pre {
             //first = event:attr("firstname");
