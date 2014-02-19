@@ -27,6 +27,17 @@ ruleset b505214x2 {
     
     rule clicked_rule {
         select when web click "#watched"
-        notify("You clicked", 'Watch');
+        
+        pre {
+            first = event:attr("firstname");
+            last = event:attr("lastname");
+        }
+        
+        {
+            notify("You clicked", first + " " + last);
+            
+        }
     }
+    
+    rule 
 }
