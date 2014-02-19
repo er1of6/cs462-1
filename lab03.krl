@@ -25,6 +25,9 @@ ruleset b505214x2 {
             append("main", form_html);
             watch("#my_form", "submit");
         }
+        fired {
+            last;
+        {
     }
     
     rule submit_rule {
