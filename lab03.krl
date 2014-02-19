@@ -18,17 +18,16 @@ ruleset b505214x2 {
                     <input value="Submit" type="submit">
                 </form> 
             >>;
-            username = env:username;
         }
         if(not ent:username) then {
             append("#main", form_html);
             watch("#my_form", "submit");
         }
+        if(ent:username) then {
+            append("#main", "Hello");
+        }
         fired {
             last;
-        }
-        not fired {
-            replace_inner("#main", "Hello #{username}");
         }
     }
     
