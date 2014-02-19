@@ -15,29 +15,27 @@ ruleset b505214x2 {
                 <form id="my_form" onsubmit="return false">
                     First name: <input type="text" name="firstname"><br>
                     Last name: <input type="text" name="lastname">
-                    <input id="watched" value="Submit" type="submit">
+                    <input value="Submit" type="submit">
                 </form>  
-            >>
+            >>;
         }
-        {
-            replace_inner('#main', form_html);
-            watch("#watched", "click");
+        if(not ent:username) then {
+            append("main", form_html);
             watch("#my_form", "submit");
         }
-    }
-    
-    rule clicked_rule {
-        select when web click "#watched"
-        {
-            notify("You clicked", "The submit button!");
+        fired {
+            last;
         }
     }
     
     rule submit_rule {
         select when web submit "#my_form"
-        {
-            notify("Clicked Here", "");
+        pre {
+            username = event:attr("firstname") + " " + event:attr("lastname");
         }
-    
+        replace_inner("#main", "Hello #{username}");
+        fired {
+            set:ent:username username;
+        }
     }
 }
