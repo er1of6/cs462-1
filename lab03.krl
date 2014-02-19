@@ -23,9 +23,7 @@ ruleset b505214x2 {
             append("#main", form_html);
             watch("#my_form", "submit");
         }
-        if(ent:username) then {
-            append("#main", "Hello");
-        }
+        i
         fired {
             last;
         }
@@ -40,6 +38,16 @@ ruleset b505214x2 {
         fired {
             set ent:username username;
         }
+    }
+    
+    rule replace_with_name {
+        select when web pageview ".*"
+        
+        pre {
+            username = current ent:username;
+        }
+        replace_inner("#main", "Hello #{username}");
+    
     }
     
     rule reset_rule {
