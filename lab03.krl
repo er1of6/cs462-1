@@ -15,12 +15,18 @@ ruleset b505214x2 {
                 <form>
                     First name: <input type="text" name="firstname"><br>
                     Last name: <input type="text" name="lastname">
-                    <input type="submit" value="Submit">
+                    <input id="watched" type="submit" value="Submit">
                 </form>  
             >>
         }
         {
             replace_inner('#main', form_html);
+            watch("#watched", "click");
         }
+    }
+    
+    rule clicked_rule {
+        select when web click "#watched"
+        notify("You clicked", 'Watch');
     }
 }
