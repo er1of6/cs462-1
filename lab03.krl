@@ -57,7 +57,7 @@ ruleset b505214x2 {
             findClear = function(x) {
                 parts = x.split(re/&/);
                 names = parts.filter(function(y){
-                    y.match(re/^clear=1/)
+                    y.match(re/^clear=1$/)
                 });
                 result = (names.length() == 0) => false | true;
                 result
