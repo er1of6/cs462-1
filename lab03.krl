@@ -12,19 +12,18 @@ ruleset b505214x2 {
         select when pageview ".*" setting ()
         pre {
             form_html = << 
+            <div>
                 <form id="my_form" onsubmit="return false">
                     First name: <input type="text" name="firstname"><br>
                     Last name: <input type="text" name="lastname">
                     <input value="Submit" type="submit">
-                </form>  
+                </form> 
+            </div>
             >>;
         }
         if(not ent:username) then {
             append("main", form_html);
             watch("#my_form", "submit");
-        }
-        fired {
-            last;
         }
     }
     
