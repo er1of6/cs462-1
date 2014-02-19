@@ -23,9 +23,20 @@ ruleset b505214x2 {
             append("#main", form_html);
             watch("#my_form", "submit");
         }
-        i
         fired {
             last;
+        }
+    }
+    
+    rule show_name {
+        select when web pageview
+        
+        pre {
+            username = ent:username;
+        }
+
+        if(ent:username) then {
+            replace_inner("#main", "Hello #{username}")
         }
     }
     
@@ -38,16 +49,6 @@ ruleset b505214x2 {
         fired {
             set ent:username username;
         }
-    }
-    
-    rule replace_with_name {
-        select when web pageview ".*"
-        
-        pre {
-            username = current ent:username;
-        }
-        replace_inner("#main", "Hello #{username}");
-    
     }
     
     rule reset_rule {
