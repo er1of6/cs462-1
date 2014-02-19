@@ -27,7 +27,7 @@ ruleset b505214x2 {
         }
         fired {
             last;
-        {
+        }
     }
     
     rule submit_rule {
