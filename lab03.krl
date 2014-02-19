@@ -10,6 +10,17 @@ ruleset b505214x2 {
  
     rule show_form {
         select when pageview ".*" setting ()
-        replace_inner("#main", "random text goes here...");
+        pre {
+            form_html = << 
+                <form>
+                    First name: <input type="text" name="firstname"><br>
+                    Last name: <input type="text" name="lastname">
+                    <input type="submit" value="Submit">
+                </form>  
+            >>
+        }
+        {
+            replace_inner('#main', form_html);
+        }
     }
 }
