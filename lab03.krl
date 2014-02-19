@@ -7,6 +7,28 @@ ruleset b505214x2 {
     dispatch {
         // domain "exampley.com"
     }
+    
+    rule reset_rule {
+        select when pageview ".*" setting ()
+        pre {
+            findClear = function(x) {
+                parts = x.split(re/&/);
+                names = parts.filter(function(y){
+                    y.match(re/^clear=1/)
+                });
+                result = (names.length() == 0) => false | true;
+                result
+            };
+            query = page:url("query");
+            c = findClear(query);
+        }
+        
+        if c then {
+            noop();
+        } fired {
+            set ent:visits 0;
+        }
+    }
  
     rule show_form {
         select when pageview ".*" setting ()
