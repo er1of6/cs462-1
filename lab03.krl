@@ -38,6 +38,4 @@ ruleset b505214x2 {
             
         }
     }
-    
-    rule 
 }
