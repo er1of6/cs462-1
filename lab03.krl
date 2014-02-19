@@ -15,8 +15,8 @@ ruleset b505214x2 {
                 <form>
                     First name: <input type="text" name="firstname"><br>
                     Last name: <input type="text" name="lastname">
-                    <button id="watched">Submit</button>
                 </form>  
+                <button id="watched">Submit</button>
             >>
         }
         {
