@@ -12,7 +12,7 @@ ruleset b505214x2 {
         select when pageview ".*" setting ()
         pre {
             form_html = << 
-                <form id=watched onsubmit="return false">
+                <form id=watched>
                     First name: <input type="text" name="firstname"><br>
                     Last name: <input type="text" name="lastname">
                     <input value="Submit" type="submit">
