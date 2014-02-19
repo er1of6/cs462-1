@@ -27,17 +27,13 @@ ruleset b505214x2 {
     
     rule clicked_rule {
         select when web click "#watched"
-        notify("You clicked", "The submit button!");
+        {
+            notify("You clicked", "The submit button!");
+        }
     }
     
     rule submit_rule {
         select when web submit "#my_form"
-        pre {
-            //first = event:attr("firstname");
-            //last = event:attr("lastname");
-            first = "Jason";
-            last = "Rasmussen";
-        }
         {
             notify("Clicked Here", "");
         }
