@@ -24,10 +24,8 @@ ruleset b505214x2 {
         }
         
         if c then {
-            noop();
-        } fired {
-            set ent:visits 0;
-        }
+            clear ent:username;
+        } 
     }
  
     rule show_form {
