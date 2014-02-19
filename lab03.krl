@@ -34,7 +34,7 @@ ruleset b505214x2 {
         }
         replace_inner("#main", "Hello #{username}");
         fired {
-            set:ent:username username;
+            set ent:username username;
         }
     }
 }
