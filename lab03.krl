@@ -24,11 +24,11 @@ ruleset b505214x2 {
             append("#main", form_html);
             watch("#my_form", "submit");
         }
-        else {
-            replace_inner("#main", "Hello #{username}");
-        }
         fired {
             last;
+        }
+        not fired {
+            replace_inner("#main", "Hello #{username}");
         }
     }
     
