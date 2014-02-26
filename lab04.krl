@@ -26,11 +26,11 @@ ruleset b505214x3 {
           <div style="width: 300px;">
             <h3><strong>Title: </strong> #{title}</h3><br>
             <img src="#{image}"/><br>
-            <p1>><strong>Year: </strong>#{year}</p1><br>
-            <p1>><strong>Synopsis: </strong>#{synopsis}</p1><br>
-            <p1>><strong>Critics Score: </strong>#{critics_score}</p1><br>
-            <p1>><strong>Audience Score: </strong>#{audience_score}</p1><br>
-            <p1>><strong>Critics Consensus: </strong>#{critics_consensus}</p1><br>
+            <p1><strong>Year: </strong>#{year}</p1><br>
+            <p1><strong>Synopsis: </strong>#{synopsis}</p1><br>
+            <p1><strong>Critics Score: </strong>#{critics_score}</p1><br>
+            <p1><strong>Audience Score: </strong>#{audience_score}</p1><br>
+            <p1><strong>Critics Consensus: </strong>#{critics_consensus}</p1><br>
           </div>
       >>;
       html
