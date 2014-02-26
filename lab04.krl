@@ -27,8 +27,8 @@ ruleset b505214x3 {
         }
         
         every {
-          notify("Hello", findMove("Star Wars");
-          append("#main", example);
+          notify("Hello", "This should work");
+          append("#main", findMove("Star Wars"));
         }
     }
 }
