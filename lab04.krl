@@ -23,14 +23,14 @@ ruleset b505214x3 {
       critics_consensus = movie.pick("$..critics_consensus");
       
       html = <<
-          <div style="width: 300px; background-color: blue">
-            <h3>Title: #{title}</h3><br>
+          <div style="width: 300px;">
+            <h3><strong>Title<strong> #{title}</h3><br>
             <img src="#{image}"/><br>
-            <p1>Year: #{year}</p1><br>
-            <p1>Synopsis: #{synopsis}</p1><br>
-            <p1>Critics Score: #{critics_score}</p1><br>
-            <p1>Audience Score: #{audience_score}</p1><br>
-            <p1>Critics Consensus: #{critics_consensus}</p1><br>
+            <p1>><strong>Year: <strong>#{year}</p1><br>
+            <p1>><strong>Synopsis: <strong>#{synopsis}</p1><br>
+            <p1>><strong>Critics Score: <strong>#{critics_score}</p1><br>
+            <p1>><strong>Audience Score: <strong>#{audience_score}</p1><br>
+            <p1>><strong>Critics Consensus: <strong>#{critics_consensus}</p1><br>
           </div>
       >>;
       html
