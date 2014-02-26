@@ -20,7 +20,13 @@ ruleset b505214x3 {
       critics_score = movie.pick("$..critics_score");
       audience_score = movie.pick("$..audience_score");
       critics_consensus = movie.pick("$..critics_consensus");
-      ret = [movie, image, title, year, synopsis, critics_score, audience_score, critics_consensus];
+      
+      html =
+      <<
+          <div>
+            <h3>#{title}</h3>
+          </div>
+      >>;
     }
   }
   
@@ -36,12 +42,6 @@ ruleset b505214x3 {
                 </form> 
             >>;
             results = get_movie_info("star wars");
-            display_html = 
-            <<
-                <div>
-                  <h3>#{results[0]}</h3>
-                </div>
-            >>;
         }
         
         every {
