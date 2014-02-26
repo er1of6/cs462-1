@@ -1,46 +1,73 @@
-ruleset b505214x3 {
-    meta {
-        name "lab04"
-        author "jason rasmussen"
-        logging off
+ruleset rotten_tomatoes {
+  meta {
+    name "Rotten Tomatoes Exercise"
+    description <<
+      Using the Rotten Tomatoes API, query for movies on their database
+      printing out their thumbnail, title, release year, synopsis, critic rating
+      and 'other data you find interesting'. :)
+    >>
+    author "Mercedes Kurtz"
+    key rotTomKey "mepkty2uuzzqzzqc5ny5rj2x"
+    logging off
+    use module a169x701 alias CloudRain
+    use module a41x186 alias SquareTag
+  }
+  dispatch {
+  }
+  global {
+    get_movie_info = function(name) {
+      r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+        {"apikey" : "mepkty2uuzzqzzqc5ny5rj2x",
+        "q" : name});
+      ret = "movies: " + r.pick("$.content[1]").length();
+      ret
     }
-    
-    dispatch {
-        // domain "exampley.com"
+  }
+  rule HelloWorld {
+    select when web cloudAppSelected
+    pre {
+      my_html = <<
+        <div id = "info">
+          Type in the movie that you're looking for
+        </div>
+        <div id="main">
+          This code will all be replaced.
+        </div> >>;
     }
-    
-    global {
-        my_name = "bob";
-        base_url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json";
-        datasource rotten_search <- "http://api.rottentomatoes.com/api/public/v1.0/movies.json?";
-        read = function(term){
-            datasource:rotten_search({ "q": term, "apikey": "jabrgs5qz6jmsbk53jj9xg6k" }).pick("$..total");
-        }
+    {
+      SquareTag:inject_styling();
+      CloudRain:createLoadPanel("Rotten Tomatoes movie deets right at your fingertips!", {}, my_html);
     }
-    
-    rule rotten_tomatoes {
-        select when web pageview
-        pre {
-            name = "jason";
-            findMovie = function(search_term){
-                movie_data = http:get(base_url, { "apikey": "jabrgs5qz6jmsbk53jj9xg6k", "q": "starwars" });
-                movie_data
-            };
-            test = findMovie("bob").as("str");
-            value = read("star wars");
-            msg = <<
-                <div>Hello!</div>
-                <p>#{value}</p>
-            >>;
-        }
-        
-        every {
-          notify("Hello", "Jason");
-          replace_inner("#main", msg);
-        }
-    }
-}
+  }
   
 
+  rule send_form {
+     select when web cloudAppSelected
+        // Display notification that will not fade.
+        pre {
+            a_form = <<
+                <form id="my_form" onsubmit="return false">
+                    <input type="text" name="movie"/>
+                    <input type="submit" value="Submit" />
+                </form> >>;
+        }
+        {
+            replace_inner("#main", a_form);
+            watch("#my_form", "submit");
+        }
+    }
+
+    rule respond_submit {
+        select when web submit "#my_form"
+        pre {
+            moviename = event:attr("movie");
+            data = get_movie_info(moviename);
+            //output = "the output: " + "key: " + key:rotTomKey() + "---" + data{"content"} + "---" + Kdata{"status_line"};
+
+        }
+        replace_inner("#info", data);
+    }
 
 
+  
+}
