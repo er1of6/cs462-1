@@ -38,7 +38,10 @@ ruleset b505214x3 {
         >>;
         
         error = <<
-          <div><h2>No Results Found!</h2></div>
+          <div>
+            <h2>No Results Found!</h2>
+            <h3><strong>Search Title: </strong> #{title}</h3><br>
+          </div>
         >>;
         
         result = total > 0 => html | error;
