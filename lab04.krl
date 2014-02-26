@@ -13,6 +13,7 @@ ruleset b505214x3 {
       r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey" : "jabrgs5qz6jmsbk53jj9xg6k", "q" : term});
       json_data = r.pick("$.content").decode();
       movie = json_data.pick("$.movies[0]");
+      
       image = movie.pick("$..thumbnail");
       title = movie.pick("$.title");
       year = movie.pick("$.year");
@@ -21,8 +22,7 @@ ruleset b505214x3 {
       audience_score = movie.pick("$..audience_score");
       critics_consensus = movie.pick("$..critics_consensus");
       
-      html =
-      <<
+      html = <<
           <div>
             <h3>#{title}</h3>
           </div>
@@ -42,12 +42,12 @@ ruleset b505214x3 {
                     <input type="submit" value="Submit" />
                 </form> 
             >>;
-            html = get_movie_info("star wars");
+            movie_html = get_movie_info("star wars");
         }
         
         every {
             notify("Alert", "Jason");
-            replace_inner("#main", html);
+            replace_inner("#main", movie_html);
             //watch("#my_form", "submit");
         }
     }
