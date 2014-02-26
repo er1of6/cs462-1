@@ -1,30 +1,26 @@
 ruleset b505214x3 {
   meta {
     name "Rotten Tomatoes Exercise"
-    description <<
-      Using the Rotten Tomatoes API, query for movies on their database
-      printing out their thumbnail, title, release year, synopsis, critic rating
-      and 'other data you find interesting'. :)
+    description "
+      Using the Rotten Tomatoes API
     >>
-    author "Mercedes Kurtz"
-    key rotTomKey "mepkty2uuzzqzzqc5ny5rj2x"
+    author "Jason Rasmussen"
     logging off
     use module a169x701 alias CloudRain
     use module a41x186 alias SquareTag
   }
   dispatch {
   }
+  
   global {
-    get_movie_info = function(name) {
-      r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
-        {"apikey" : "mepkty2uuzzqzzqc5ny5rj2x",
-        "q" : name});
+    get_movie_info = function(term) {
+      r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey" : "jabrgs5qz6jmsbk53jj9xg6k", "q" : term});
       ret = "movies: " + r.pick("$.content[1]").length();
       ret
     }
   }
   rule HelloWorld {
-    select when web cloudAppSelected
+    select when web pageview
     pre {
       my_html = <<
         <div id = "info">
@@ -35,14 +31,15 @@ ruleset b505214x3 {
         </div> >>;
     }
     {
-      SquareTag:inject_styling();
-      CloudRain:createLoadPanel("Rotten Tomatoes movie deets right at your fingertips!", {}, my_html);
+      //SquareTag:inject_styling();
+      //CloudRain:createLoadPanel("Rotten Tomatoes movie deets right at your fingertips!", {}, my_html);
+      append("body", my_html);
     }
   }
   
 
   rule send_form {
-     select when web cloudAppSelected
+     select when web pageview
         // Display notification that will not fade.
         pre {
             a_form = <<
@@ -62,7 +59,6 @@ ruleset b505214x3 {
         pre {
             moviename = event:attr("movie");
             data = get_movie_info(moviename);
-            //output = "the output: " + "key: " + key:rotTomKey() + "---" + data{"content"} + "---" + Kdata{"status_line"};
 
         }
         replace_inner("#info", data);
