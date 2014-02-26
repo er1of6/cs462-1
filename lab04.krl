@@ -28,7 +28,7 @@ ruleset b505214x3 {
         
         every {
           notify("Hello", "Jason");
-          append("#main", "<div>" + findMovie("bob") + "</div>);
+          append("#main", "<div>" + findMovie("bob") + "</div>");
         }
     }
 }
