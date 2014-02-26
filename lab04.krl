@@ -17,8 +17,8 @@ ruleset b505214x3 {
       title = movie.pick("$.title");
       year = movie.pick("$.year");
       synopsis = movie.pick("$.synopsis");
-      critics_score = movie.pick($..critics_score");
-      audience_score = movie.pick($..audience_score");
+      critics_score = movie.pick("$..critics_score");
+      audience_score = movie.pick("$..audience_score");
       ret = [movie, image, title, year, synopsis, critics_score, audience_score];
       ret.as("str")
     }
