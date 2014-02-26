@@ -15,7 +15,11 @@ ruleset b505214x3 {
       movie = json_data.pick("$.movies[0]");
       image = movie.pick("$..thumbnail");
       title = movie.pick("$.title");
-      ret = [movie, image, title];
+      year = movie.pick("$.year");
+      synopsis = movie.pick("$.synopsis");
+      critics_score = movie.pick($..critics_score");
+      audience_score = movie.pick($..audience_score");
+      ret = [movie, image, title, year, synopsis, critics_score, audience_score];
       ret.as("str")
     }
   }
