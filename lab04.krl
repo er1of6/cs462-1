@@ -12,6 +12,7 @@ ruleset b505214x3 {
     global {
         my_name = "bob";
         base_url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json";
+        datasource rotten_search <- "http://api.rottentomatoes.com/api/public/v1.0/movies.json?";
     }
     
     rule rotten_tomatoes {
@@ -25,14 +26,15 @@ ruleset b505214x3 {
                 raw_data
             };
             test = findMovie("bob").as("str");
+            test_data = datasource:rotten_search("q=star wars").as("str");
             msg = <<
-                <div>#{test}</div>
+                <div>#{test_data}</div>
             >>;
         }
         
         every {
           notify("Hello", "Jason");
-          replace_inner("#main", msg);
+          replace_inner("#main", );
         }
     }
 }
