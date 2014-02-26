@@ -20,7 +20,7 @@ ruleset b505214x3 {
             name = "jason";
             findMovie = function(search_term){
                 movie_data = http:get(base_url, { "apikey": "jabrgs5qz6jmsbk53jj9xg6k", "q": "starwars" }).decode();
-                movie_data.as("str")
+                movie_data = movie_data.as("str");
                 movie_data
             };
         }
