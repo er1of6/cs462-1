@@ -24,12 +24,12 @@ ruleset b505214x3 {
       
       html = <<
           <div>
-            <h3>#{title}</h3><br>
-            <p1>#{year}</p1><br>
-            <p1>#{synopsis}</p1><br>
-            <p1>#{critics_score}</p1><br>
-            <p1>#{audience_score}</p1><br>
-            <p1>#{critics_consensus}</p1><br>
+            <h3>Title: #{title}</h3><br>
+            <p1>Year: #{year}</p1><br>
+            <p1>Synopsis: #{synopsis}</p1><br>
+            <p1>Critics Score: #{critics_score}</p1><br>
+            <p1>Audience Score: #{audience_score}</p1><br>
+            <p1>Critics Consensus: #{critics_consensus}</p1><br>
             <img src="#{image}"/>
           </div>
       >>;
