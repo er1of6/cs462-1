@@ -11,7 +11,7 @@ ruleset b505214x3 {
     
     global {
         my_name = "bob";
-        base_url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?";
+        base_url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json";
     }
     
     rule rotten_tomatoes {
@@ -19,11 +19,9 @@ ruleset b505214x3 {
         pre {
             name = "jason";
             findMovie = function(search_term){
-                movie_data = http:get(base_url + "apikey=jabrgs5qz6jmsbk53jj9xg6k&page_limit=5&page=1&q=starwars").decode();
+                movie_data = http:get(base_url, { "apikey": "jabrgs5qz6jmsbk53jj9xg6k", "q": "starwars" }).decode();
                 movie_data
             };
-            
-            
         }
         
         every {
