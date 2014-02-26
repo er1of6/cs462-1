@@ -13,6 +13,9 @@ ruleset b505214x3 {
         my_name = "bob";
         base_url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json";
         datasource rotten_search <- "http://api.rottentomatoes.com/api/public/v1.0/movies.json?";
+        read = function(term){
+            datasource:rotten_search({ "q": term, "apikey": "jabrgs5qz6jmsbk53jj9xg6k" }).pick("$..total");
+        }
     }
     
     rule rotten_tomatoes {
@@ -20,22 +23,14 @@ ruleset b505214x3 {
         pre {
             name = "jason";
             findMovie = function(search_term){
-                raw_data = http:get(base_url, { "apikey": "jabrgs5qz6jmsbk53jj9xg6k", "q": "starwars" });
-                movie_data = raw_data.pick("$..movies[1]");
-                //movie_data
-                raw_data
+                movie_data = http:get(base_url, { "apikey": "jabrgs5qz6jmsbk53jj9xg6k", "q": "starwars" });
+                movie_data
             };
             test = findMovie("bob").as("str");
-            test_data = datasource:rotten_search("q=starwars");
-            output = test_data.pick("$..movies[0]");
-            output1 = test_data.pick("$..movies");
-            output2 = test_data.pick("$");
+            value = read("star wars");
             msg = <<
                 <div>Hello!</div>
-                <p>#{test_data}</p>
-                <p>#{output}</p>
-                <p>#{output1}</p>
-                <p>#{output2}</p>
+                <p>#{value}</p>
             >>;
         }
         
