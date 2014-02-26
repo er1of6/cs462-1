@@ -19,8 +19,8 @@ ruleset b505214x3 {
       synopsis = movie.pick("$.synopsis");
       critics_score = movie.pick("$..critics_score");
       audience_score = movie.pick("$..audience_score");
-      ret = [movie, image, title, year, synopsis, critics_score, audience_score];
-      ret.as("str")
+      critics_consensus = movie.pick("$..critics_consensus");
+      ret = [movie, image, title, year, synopsis, critics_score, audience_score, critics_consensus];
     }
   }
   
@@ -35,11 +35,18 @@ ruleset b505214x3 {
                     <input type="submit" value="Submit" />
                 </form> 
             >>;
+            results = get_movie_info("star wars");
+            display_html = 
+            <<
+                <div>
+                  <h3>#{results[0]}</h3>
+                </div>
+            >>;
         }
         
         every {
             notify("Alert", "Jason");
-            replace_inner("#main", get_movie_info("star wars"));
+            replace_inner("#main", display_html);
             //watch("#my_form", "submit");
         }
     }
