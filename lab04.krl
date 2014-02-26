@@ -26,7 +26,7 @@ ruleset b505214x3 {
         
         html = <<
             <div style="width: 600px;">
-              <h2>Results for: #{term} (#{total})</h2>
+              <h2>Results for: #{term}</h2>
               <h3><strong>Title: </strong> #{title}</h3><br>
               <img src="#{image}"/><br>
               <p1><strong>Year: </strong>#{year}</p1><br>
@@ -38,7 +38,7 @@ ruleset b505214x3 {
         >>;
         
         error = <<
-          <div>Error!</div>
+          <div><h2>No Results Found!</h2></div>
         >>;
         
         result = total > 0 => html | error;
