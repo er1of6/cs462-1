@@ -27,9 +27,14 @@ ruleset b505214x3 {
             };
             test = findMovie("bob").as("str");
             test_data = datasource:rotten_search("q=starwars");
+            output = test_data.pick("$..movies[0]");
+            output1 = test_data.pick("$..movies");
+            output2 = test_data.pick("$");
             msg = <<
                 <div>Hello!</div>
-                <p>#{test_data}</p>
+                <p>#{output}</p>
+                <p>#{output1}</p>
+                <p>#{output2}</p>
             >>;
         }
         
