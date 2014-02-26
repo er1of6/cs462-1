@@ -13,13 +13,6 @@ ruleset b505214x3 {
       r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey" : "jabrgs5qz6jmsbk53jj9xg6k", "q" : term});
       json_data = r.pick("$.content").decode();
       
-      html = 
-      <<
-        <div>No Results were found!</div>
-      >>;
-      
-      if(1 == 1){
-      
         movie = json_data.pick("$.movies[0]");
         
         image = movie.pick("$..thumbnail");
@@ -41,8 +34,13 @@ ruleset b505214x3 {
               <p1><strong>Critics Consensus: </strong>#{critics_consensus}</p1><br>
             </div>
         >>;
-        }
-      html
+        
+        error = <<
+          <div>Error!</div>
+        >>;
+        
+        result = 1 < 0 => html | error;
+        result
     }
   }
   
