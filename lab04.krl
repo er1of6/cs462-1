@@ -1,4 +1,4 @@
-ruleset rotten_tomatoes {
+ruleset b505214x3 {
   meta {
     name "Rotten Tomatoes Exercise"
     description <<
