@@ -30,7 +30,7 @@ ruleset b505214x3 {
             <p1>#{critics_score}</p1><br>
             <p1>#{audience_score}</p1><br>
             <p1>#{critics_consensus}</p1><br>
-            <img href="#{image}"/>
+            <img src="#{image}"/>
           </div>
       >>;
       html
