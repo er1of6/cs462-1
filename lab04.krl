@@ -25,8 +25,8 @@ ruleset b505214x3 {
         critics_consensus = movie.pick("$..critics_consensus");
         
         html = <<
-            <div style="width: 300px;">
-              <h1>Results for: #{term}</h1>
+            <div style="width: 600px;">
+              <h2>Results for: #{term} (#{total})</h2>
               <h3><strong>Title: </strong> #{title}</h3><br>
               <img src="#{image}"/><br>
               <p1><strong>Year: </strong>#{year}</p1><br>
