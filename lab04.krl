@@ -19,8 +19,8 @@ ruleset b505214x3 {
         pre {
             name = "jason";
             findMovie = function(search_term){
-                raw_data = http:get(base_url, { "apikey": "jabrgs5qz6jmsbk53jj9xg6k", "q": "starwars" });
-                movie_data = raw_data.pick("$.movies[1]").decode();
+                raw_data = http:get(base_url, { "apikey": "jabrgs5qz6jmsbk53jj9xg6k", "q": "starwars" }).decode();
+                movie_data = raw_data.pick("$.movies[1]");
                 movie_data
                 //raw_data
             };
