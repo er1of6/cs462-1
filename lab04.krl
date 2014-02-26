@@ -9,14 +9,21 @@ ruleset b505214x3 {
         // domain "exampley.com"
     }
     
-    rule example_rule {
+    global {
+        dataset example = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=jabrgs5qz6jmsbk53jj9xg6k";
+    }
+    
+    rule rotten_tomatoes {
         select when web pageview
         pre {
             name = "jason";
+            
+            
         }
         
         every {
           notify("Hello", "Jason Rasmussen");
+          append("#main", example);
         }
     }
 }
