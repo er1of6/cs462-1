@@ -37,31 +37,34 @@ ruleset b505214x3 {
     }
   }
   
+  rule send_form {
+     select when web pageview
+        pre {
+            form_html = 
+            <<
+                <form id="my_form" onsubmit="return false">
+                    <input type="text" name="movie"/>
+                    <input type="submit" value="Submit" />
+                </form> 
+                <div id="results"></div>
+            >>;
+        }
+        
+        every {
+            notify("Alert", "Jason");
+            replace_inner("#main", form_html);
+            watch("#my_form", "submit");
+        }
+    }
+
     rule respond_submit {
         select when web submit "#my_form"
         pre {
             term = event:attr("movie");
             movie_html = get_movie_info(term);
         }
-        replace_inner("#main", movie_html);
-    }
-    
-    rule send_form {
-     select when web pageview
-        pre {
-            form_html = 
-            <<
-                <form id="my_form" onsubmit="return false" placeholder="Type a movie name...">
-                    <input type="text" name="movie"/>
-                    <input type="submit" value="Submit" />
-                </form> 
-            >>;
-        }
-        
-        every {
-            notify("Alert", "Jason");
-            append("#main", form_html);
-            watch("#my_form", "submit");
-        }
+        replace_inner("#results", movie_html);
     }
 }
+    
+    
