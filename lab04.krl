@@ -27,7 +27,7 @@ ruleset b505214x3 {
         
         every {
           notify("Hello", "Jason");
-          replace_inner("#main", "<div>" + findMovie("bob").as("str") + "</div>");
+          replace_inner("#main", "<div>" + findMovie("bob") + "</div>");
         }
     }
 }
