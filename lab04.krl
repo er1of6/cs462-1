@@ -37,7 +37,6 @@ ruleset b505214x3 {
     }
   }
   
-
   rule send_form {
      select when web pageview
         pre {
@@ -63,6 +62,6 @@ ruleset b505214x3 {
             term = event:attr("movie");
             movie_html = get_movie_info(term);
         }
-        replace_inner("#info", movie_html);
+        append("#main", movie_html);
     }
 }
