@@ -27,6 +27,7 @@ ruleset b505214x3 {
             <h3>#{title}</h3>
           </div>
       >>;
+      html
     }
   }
   
