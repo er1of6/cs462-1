@@ -34,7 +34,7 @@ ruleset b505214x3 {
         
         every {
           notify("Hello", "Jason");
-          replace_inner("#main", );
+          replace_inner("#main", msg);
         }
     }
 }
