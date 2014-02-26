@@ -23,7 +23,7 @@ ruleset b505214x3 {
                 movie_data = raw_data.pick("$..movies[1].title");
                 movie_data
             };
-            test = findMovie("bob");
+            test = findMovie("bob").as("str");
             msg = <<
                 <div>#{test}</div>
             >>;
