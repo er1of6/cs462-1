@@ -41,7 +41,7 @@ ruleset b505214x3 {
           <div>Error!</div>
         >>;
         
-        result = 1 > 0 => html | error;
+        result = total > 0 => html | error;
         result
     }
   }
