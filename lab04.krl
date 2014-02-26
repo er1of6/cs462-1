@@ -42,7 +42,7 @@ ruleset b505214x3 {
         pre {
             form_html = 
             <<
-                <form id="my_form" onsubmit="return false" placeholder="Type a movie name...>
+                <form id="my_form" onsubmit="return false" placeholder="Type a movie name...">
                     <input type="text" name="movie"/>
                     <input type="submit" value="Submit" />
                 </form> 
