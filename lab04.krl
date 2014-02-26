@@ -26,7 +26,7 @@ ruleset b505214x3 {
                 raw_data
             };
             test = findMovie("bob").as("str");
-            test_data = datasource:rotten_search("q=star wars");
+            test_data = datasource:rotten_search("q=star wars").as("str");
             msg = <<
                 <div>#{test_data}</div>
             >>;
