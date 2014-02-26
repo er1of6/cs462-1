@@ -41,12 +41,12 @@ ruleset b505214x3 {
                     <input type="submit" value="Submit" />
                 </form> 
             >>;
-            results = get_movie_info("star wars");
+            html = get_movie_info("star wars");
         }
         
         every {
             notify("Alert", "Jason");
-            replace_inner("#main", display_html);
+            replace_inner("#main", html);
             //watch("#my_form", "submit");
         }
     }
