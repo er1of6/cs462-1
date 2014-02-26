@@ -11,19 +11,23 @@ ruleset b505214x3 {
     
     global {
         my_name = "bob";
-        datasource rotten_search <- "http://api.rottentomatoes.com/api/public/v1.0/movies.json?";
+        base_url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?";
     }
     
     rule rotten_tomatoes {
         select when web pageview
         pre {
             name = "jason";
-            movie_data = datasource:rotten_search("apikey=jabrgs5qz6jmsbk53jj9xg6k&age_limit=5&page=1&q=star wars");
+            findMovie = function(search_term){
+                movie_data = http:get("apikey=jabrgs5qz6jmsbk53jj9xg6k&page_limit=5&page=1&q=star wars");
+                movie_data
+            };
+            
             
         }
         
         every {
-          notify("Hello", "This should work");
+          notify("Hello", movie_data);
           append("#main", movie_data);
         }
     }
