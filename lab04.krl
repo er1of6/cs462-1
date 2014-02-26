@@ -6,8 +6,6 @@ ruleset b505214x3 {
     >>
     author "Jason Rasmussen"
     logging off
-    use module a169x701 alias CloudRain
-    use module a41x186 alias SquareTag
   }
   dispatch {
   }
@@ -19,36 +17,21 @@ ruleset b505214x3 {
       ret
     }
   }
-  rule HelloWorld {
-    select when web pageview
-    pre {
-      my_html = <<
-        <div id = "info">
-          Type in the movie that you're looking for
-        </div>
-        <div id="main">
-          This code will all be replaced.
-        </div> >>;
-    }
-    {
-      //SquareTag:inject_styling();
-      //CloudRain:createLoadPanel("Rotten Tomatoes movie deets right at your fingertips!", {}, my_html);
-      append("body", my_html);
-    }
-  }
   
 
   rule send_form {
      select when web pageview
-        // Display notification that will not fade.
         pre {
-            a_form = <<
+            a_form = 
+            <<
                 <form id="my_form" onsubmit="return false">
                     <input type="text" name="movie"/>
                     <input type="submit" value="Submit" />
-                </form> >>;
+                </form> 
+            >>;
         }
-        {
+        
+        every {
             replace_inner("#main", a_form);
             watch("#my_form", "submit");
         }
@@ -59,11 +42,7 @@ ruleset b505214x3 {
         pre {
             moviename = event:attr("movie");
             data = get_movie_info(moviename);
-
         }
         replace_inner("#info", data);
     }
-
-
-  
 }
