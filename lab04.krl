@@ -11,8 +11,9 @@ ruleset b505214x3 {
   global {
     get_movie_info = function(term) {
       r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey" : "jabrgs5qz6jmsbk53jj9xg6k", "q" : term});
-      json_data = r.pick("$.content").decode();
-      ret = "Movies: " + json_data["content", "movies"].as("str");
+      json_data = r.pick("$.content");
+      //.decode();
+      ret = "Movies: " + json_data.pick("$.*).decode().as("str");
       ret
     }
   }
