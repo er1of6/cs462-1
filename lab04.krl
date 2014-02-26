@@ -16,7 +16,7 @@ ruleset b505214x3 {
       html = 
       <<
         <div>No Results were found!</div>
-      >>
+      >>;
       
       if(1 == 1){
       
