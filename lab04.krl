@@ -10,7 +10,9 @@ ruleset b505214x3 {
     }
     
     global {
-        dataset example = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=jabrgs5qz6jmsbk53jj9xg6k";
+        dataset example <- "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=jabrgs5qz6jmsbk53jj9xg6k";
+        my_name = "bob"
+    
     }
     
     rule rotten_tomatoes {
@@ -22,7 +24,7 @@ ruleset b505214x3 {
         }
         
         every {
-          notify("Hello", "Jason Rasmussen");
+          notify("Hello", my_name);
           append("#main", example);
         }
     }
