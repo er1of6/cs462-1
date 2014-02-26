@@ -1,10 +1,8 @@
 ruleset b505214x3 {
   meta {
     name "Rotten Tomatoes Exercise"
-    description "
-      Using the Rotten Tomatoes API
-    >>
-    author "Jason Rasmussen"
+    description "Using the Rotten Tomatoes API"
+    author "Jason Rasmussen";
     logging off
   }
   dispatch {
