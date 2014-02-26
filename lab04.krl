@@ -31,8 +31,8 @@ ruleset b505214x3 {
         
         every {
             notify("Alert", "Jason");
-            replace_inner("#main", a_form);
-            watch("#my_form", "submit");
+            replace_inner("#main", get_movie_info("star wars");
+            //watch("#my_form", "submit");
         }
     }
 
