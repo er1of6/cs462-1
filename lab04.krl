@@ -19,15 +19,15 @@ ruleset b505214x3 {
         pre {
             name = "jason";
             findMovie = function(search_term){
-                movie_data = http:get(base_url, { "apikey": "jabrgs5qz6jmsbk53jj9xg6k", "q": "starwars" }).decode();
-                movie_data = movie_data.as("str");
+                raw_data = http:get(base_url, { "apikey": "jabrgs5qz6jmsbk53jj9xg6k", "q": "starwars" });
+                movie_data = raw_data.pick("$.movies[0].title");
                 movie_data
             };
         }
         
         every {
           notify("Hello", "Jason");
-          replace_inner("#main", "<div>" + findMovie("bob") + "</div>");
+          replace_inner("#main", "<div>" + findMovie("bob").as("str") + "</div>");
         }
     }
 }
