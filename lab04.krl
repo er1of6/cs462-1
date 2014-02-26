@@ -37,7 +37,16 @@ ruleset b505214x3 {
     }
   }
   
-  rule send_form {
+    rule respond_submit {
+        select when web submit "#my_form"
+        pre {
+            term = event:attr("movie");
+            movie_html = get_movie_info(term);
+        }
+        replace_inner("#main", movie_html);
+    }
+    
+    rule send_form {
      select when web pageview
         pre {
             form_html = 
@@ -51,17 +60,8 @@ ruleset b505214x3 {
         
         every {
             notify("Alert", "Jason");
-            replace_inner("#main", form_html);
+            append("#main", form_html);
             watch("#my_form", "submit");
         }
-    }
-
-    rule respond_submit {
-        select when web submit "#my_form"
-        pre {
-            term = event:attr("movie");
-            movie_html = get_movie_info(term);
-        }
-        append("#main", movie_html);
     }
 }
