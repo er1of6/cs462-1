@@ -13,6 +13,7 @@ ruleset b505214x3 {
       r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey" : "jabrgs5qz6jmsbk53jj9xg6k", "q" : term});
       json_data = r.pick("$.content").decode();
       
+        total = json_data.pick("$.total");
         movie = json_data.pick("$.movies[0]");
         
         image = movie.pick("$..thumbnail");
@@ -25,6 +26,7 @@ ruleset b505214x3 {
         
         html = <<
             <div style="width: 300px;">
+              <h1>Results for: #{term}</h1>
               <h3><strong>Title: </strong> #{title}</h3><br>
               <img src="#{image}"/><br>
               <p1><strong>Year: </strong>#{year}</p1><br>
@@ -39,7 +41,7 @@ ruleset b505214x3 {
           <div>Error!</div>
         >>;
         
-        result = 1 < 0 => html | error;
+        result = 1 > 0 => html | error;
         result
     }
   }
