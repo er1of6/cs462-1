@@ -32,6 +32,7 @@ ruleset b505214x3 {
             output2 = test_data.pick("$");
             msg = <<
                 <div>Hello!</div>
+                <p>#{test_data}</p>
                 <p>#{output}</p>
                 <p>#{output1}</p>
                 <p>#{output2}</p>
