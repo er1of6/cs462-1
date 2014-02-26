@@ -15,7 +15,9 @@ ruleset b505214x3 {
       movie = json_data.pick("$.movies[0]");
       image = movie.pick("$..thumbnail");
       title = movie.pick("$.title");
-      title
+      year = movie.pick("$.year");
+      ret = [movie, image, title, year];
+      ret
     }
   }
   
