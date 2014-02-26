@@ -52,7 +52,7 @@ ruleset b505214x3 {
         every {
             notify("Alert", "Jason");
             replace_inner("#main", form_html);
-            //watch("#my_form", "submit");
+            watch("#my_form", "submit");
         }
     }
 
