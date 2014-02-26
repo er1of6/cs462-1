@@ -25,11 +25,11 @@ ruleset b505214x3 {
       html = <<
           <div>
             <h3>#{title}</h3>
-            <p1><#{year}</p1>
-            <p1><#{synopsis}</p1>
-            <p1><#{critics_score}</p1>
-            <p1><#{audience_score}</p1>
-            <p1><#{critics_consensus}</p1>
+            <p1>#{year}</p1>
+            <p1>#{synopsis}</p1>
+            <p1>#{critics_score}</p1>
+            <p1>#{audience_score}</p1>
+            <p1>#{critics_consensus}</p1>
             <img src=#{image}/>
           </div>
       >>;
