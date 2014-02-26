@@ -14,7 +14,8 @@ ruleset b505214x3 {
       json_data = r.pick("$.content").decode();
       movie = json_data.pick("$.movies[0]");
       image = movie.pick("$..thumbnail");
-      image
+      title = movie.pick("$.title");
+      title
     }
   }
   
