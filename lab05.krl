@@ -12,12 +12,16 @@ ruleset b505214x4 {
     
     pre {
       content = event:attr("checkin").decode();
+      time = content.pick("$.createdAt");
+      shout = content.pick("$.shout");
+      name = content.pick("$.venue.name");
 
     }
     
     always {
-      set ent:checkin true;
-      set ent:content content;
+      set ent:time time;
+      set ent:shout shout;
+      set ent:name name;
     }
   }
   
@@ -30,8 +34,10 @@ ruleset b505214x4 {
       content = content.as("str");
       my_html = <<
       <div>
-        update? #{value} <br>
-        content #{content}
+        <h1> Checkin Information: <h1?
+        <h3> Venue: #{ent:name} </h3><br>
+        <h3> Shout: #{ent:shout} </h3><br>
+        <h3> Time: #{ent:time} </h3><br>
       </div>
       >>;
     }
