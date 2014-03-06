@@ -12,10 +12,10 @@ ruleset b505214x4 {
     
     pre {
       content = event:attr("checkin").decode();
-      time = content.pick("$.createdAt");
-      shout = content.pick("$.shout");
-      name = content.pick("$.venue.name");
-
+      time = content.pick("$..createdAt");
+      shout = content.pick("$..shout");
+      name = content.pick("$..venue.name");
+      city = content.pick("$..venue.location.city");
     }
     
     always {
@@ -29,12 +29,9 @@ ruleset b505214x4 {
     select when web cloudAppSelected
     
     pre {
-      value = ent:checkin;
-      content = ent:content;
-      content = content.as("str");
       my_html = <<
       <div>
-        <h1> Checkin Information: <h1?
+        <h1> Checkin Information </h1>
         <h3> Venue: #{ent:name} </h3><br>
         <h3> Shout: #{ent:shout} </h3><br>
         <h3> Time: #{ent:time} </h3><br>
