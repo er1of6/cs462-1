@@ -41,7 +41,7 @@ ruleset b505214x4 {
     
     every {
       SquareTag:inject_styling();
-      CloudRain:createLoadPanel("Hello World!", {}, my_html);
+      CloudRain:createLoadPanel("Lab05", {}, my_html);
     }
   }
 }
