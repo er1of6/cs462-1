@@ -32,9 +32,9 @@ ruleset b505214x4 {
       my_html = <<
       <div>
         <h1> Checkin Information </h1>
-        <h3> Venue: #{ent:name} </h3><br>
-        <h3> Shout: #{ent:shout} </h3><br>
-        <h3> Time: #{ent:time} </h3><br>
+        <h2> Venue: #{ent:name} </h2><br>
+        <h2> Shout: #{ent:shout} </h2><br>
+        <h2> Time: #{ent:time} </h2><br>
       </div>
       >>;
     }
