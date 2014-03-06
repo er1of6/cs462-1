@@ -7,18 +7,34 @@ ruleset b505214x4 {
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
   }
-  dispatch {
-  }
-  global {
-  }
-  rule HelloWorld is active {
-    select when web cloudAppSelected
+
+
+  rule process_checking {
+    select when foursquare checkin
+    
     pre {
+      
+    
+    }
+    
+    always {
+      set env:checkin true;
+    }
+  }
+  
+  rule show_html {
+    select when web cloudAppSelected
+    
+    pre {
+      //value = env:checkin
       my_html = <<
-        <h5>Hello, world!</h5>
+      <div>
+        Hello!
+      </div>
       >>;
     }
-    {
+    
+    every {
       SquareTag:inject_styling();
       CloudRain:createLoadPanel("Hello World!", {}, my_html);
     }
