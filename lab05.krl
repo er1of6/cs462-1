@@ -26,10 +26,10 @@ ruleset b505214x4 {
     select when web cloudAppSelected
     
     pre {
-      //value = ent:checkin
+      value = ent:checkin
       my_html = <<
       <div>
-        Hello!
+        update? #{value}
       </div>
       >>;
     }
