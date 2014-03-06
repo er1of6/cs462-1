@@ -18,7 +18,7 @@ ruleset b505214x4 {
     }
     
     always {
-      set env:checkin true;
+      set ent:checkin true;
     }
   }
   
@@ -26,7 +26,7 @@ ruleset b505214x4 {
     select when web cloudAppSelected
     
     pre {
-      //value = env:checkin
+      //value = ent:checkin
       my_html = <<
       <div>
         Hello!
