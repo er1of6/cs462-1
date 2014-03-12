@@ -8,8 +8,8 @@ ruleset b505214x4 {
   }
 
   rule process_checking {
-    select when foursquare checkin
-    
+    //select when foursquare checkin
+    select when web pageview
     pre {
       content = event:attr("checkin").decode();
       time = content.pick("$..createdAt");
