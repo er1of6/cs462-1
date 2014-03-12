@@ -28,12 +28,12 @@ ruleset b505214x5 {
     
     pre {
       new_dict = ent:dict || {};
-      new_dict = new_dict.put({"hello":"world"});
-      output = new_dict.pick("$.hello")
+      old_dict = new_dict.put({"hello":"world"});
+      //output = new_dict.pick("$.hello")
     }
     
     every {
-          notify("Done", output.as("str"));
+          notify("Done", old_dict.as("str"));
     }
     
     always {
