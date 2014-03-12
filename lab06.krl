@@ -17,16 +17,19 @@ ruleset b505214x5 {
     put_location_data = function(key, value){
       dict = ent:dict || {};
       dict = dict.put({key.as("str"):value.as("str")});
-      set ent:dict dict;
       dict
     }
   }
   
   rule add_location_item {
-    select when pds new_location_data
+    select when explicit new_location_data
     pre {
       key = event:attr("key");
       value = event:attr("value");
+    }
+    
+    every {
+      notify("Results", key.as("str")) with sticky = true
     }
   }
   
