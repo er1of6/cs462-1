@@ -34,7 +34,7 @@ ruleset b505214x5 {
     }
     
     every {
-          notify("Done", new_dict.as("str"));
+          notify("Done", output.as("str"));
     }
     
     always {
