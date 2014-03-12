@@ -8,17 +8,7 @@ ruleset b505214x5 {
   }
   
   global {
-    get_location_data = function(key) {
-      dict = ent:dict;
-      value = dict{key};
-      value
-    }
-    
-    put_location_data = function(key, value){
-      dict = ent:dict || {};
-      dict = dict.put({key.as("str"):value.as("str")});
-      dict
-    }
+
   }
   
   rule add_location_item {
@@ -26,7 +16,8 @@ ruleset b505214x5 {
     pre {
       key = event:attr("key");
       value = event:attr("value");
-      dict = put_location_data(key, value);
+      dict = ent:dict || {};
+      dict = dict.put([key], value);
     }
     
     always {
@@ -38,14 +29,14 @@ ruleset b505214x5 {
     select when web cloudAppSelected
     
     pre {
-      key = "fs_checkin"
-      value = get_location_data(key)
+      //dict = ent:dict || {};
+      //value = dict{"fs_checkin"};
+      value = "asd"
       my_html = <<
       <div>
           <h1> Lab06 Information </h1>
           <h2> Here </h2><br>
-          <h2> #{key} </h2><br>
-          <h2> #{value} </h2><br>
+          <h2> FS_CHECKIN: #{value} </h2><br>
       </div>
       >>;
     }
@@ -53,6 +44,7 @@ ruleset b505214x5 {
     every {
       SquareTag:inject_styling();
       CloudRain:createLoadPanel("Lab06", {}, my_html);
+      //notify("MAP", dict.as("str"));
     }
   }
 }
