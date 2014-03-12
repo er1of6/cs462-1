@@ -23,7 +23,7 @@ ruleset b505214x4 {
       set ent:shout shout;
       set ent:name name;
       set ent:city city;
-      raise pds event 'new_location_data' for 'b505214x5' with key="fs_checkin" and value="{foo:bar}";
+      raise pds event 'new_location_data' for 'b505214x5' with key="fs_checkin" and value="foo";
     }
     
   }
