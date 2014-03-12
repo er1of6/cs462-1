@@ -34,7 +34,7 @@ ruleset b505214x5 {
     }
     
     every {
-          notify("Done", output);
+          notify("Done", output.as("str"));
     }
     
     always {
