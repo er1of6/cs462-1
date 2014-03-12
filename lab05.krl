@@ -15,6 +15,7 @@ ruleset b505214x4 {
       shout = content.pick("$..shout");
       name = content.pick("$..venue.name");
       city = content.pick("$..venue.location.city");
+      data = { 'venue' : name, 'city' : city, 'shout' : shout, 'createdAt' : time } 
     }
     
     always {
@@ -22,7 +23,7 @@ ruleset b505214x4 {
       set ent:shout shout;
       set ent:name name;
       set ent:city city;
-      raise pds event 'new_location_data' for 'b505214x5' with key="fs_checkin" and value="foo";
+      raise pds event 'new_location_data' for 'b505214x5' with key="fs_checkin" and value=data;
     }
     
   }
