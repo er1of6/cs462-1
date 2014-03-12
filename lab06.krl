@@ -9,8 +9,8 @@ ruleset b505214x5 {
   
   rule add_location_item {
     select when pds new_location_data
-    key = event:attr("key");
-    value = event:attr("value");
+    //key = event:attr("key");
+    //value = event:attr("value");
   
   }
   
