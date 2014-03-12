@@ -29,6 +29,7 @@ ruleset b505214x5 {
     pre {
       new_dict = ent:dict || {};
       new_dict = new_dict.put({"test":"world2"});
+      new_dict = new_dict.put({"hello":"world"});
       //output = new_dict{"hello"}
     }
     
