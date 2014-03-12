@@ -22,7 +22,7 @@ ruleset b505214x5 {
   }
   
   rule add_location_item {
-    select when explicit new_location_data
+    select when pds new_location_data
     pre {
       key = event:attr("key");
       value = event:attr("value");
