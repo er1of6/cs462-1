@@ -27,13 +27,13 @@ ruleset b505214x5 {
     select when web pageview
     
     pre {
-      new_dict = {};
-      old_dict = new_dict.put({"hello":"world"});
+      new_dict = ent:dict || {};
+      new_dict = new_dict.put({"test":"world2"});
       //output = new_dict{"hello"}
     }
     
     every {
-          notify("Done", old_dict.as("str"));
+          notify("Done", new_dict.as("str"));
     }
     
     always {
