@@ -3,8 +3,8 @@ ruleset b505214x5 {
     name "Lab06Exercise"
     author "Jason Rasmussen"
     logging off
-    //use module a169x701 alias CloudRain
-    //use module a41x186  alias SquareTag
+    use module a169x701 alias CloudRain
+    use module a41x186  alias SquareTag
   }
   
   global {
@@ -21,6 +21,25 @@ ruleset b505214x5 {
     }
   }
   
+  rule show_html {
+    select when web cloudAppSelected
+    
+    pre {
+      my_html = <<
+      <div>
+          <h1> Lab06 Information </h1>
+          <h2> Here </h2><br>
+      </div>
+      >>;
+    }
+    
+    every {
+      SquareTag:inject_styling();
+      CloudRain:createLoadPanel("Lab05", {}, my_html);
+      notify("Here", "hello");
+    }
+  }
+  
   rule add_location_item {
     select when pds new_location_data
     pre {
@@ -29,7 +48,7 @@ ruleset b505214x5 {
     }
     
     every {
-      notify("Results", key.as("str")) with sticky = true
+      notify("Results", key.as("str"));
     }
   }
   
