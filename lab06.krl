@@ -27,7 +27,7 @@ ruleset b505214x5 {
     select when web pageview
     
     pre {
-      new_dict = ent:dict;
+      new_dict = ent:dict || {};
       new_dict = new_dict.put({"hello":"world"});
       output = new_dict{"hello"}
       
