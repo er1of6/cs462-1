@@ -14,15 +14,15 @@ ruleset b505214x5 {
   rule add_location_item {
     select when pds new_location_data
     pre {
-      key = event:attr("key");
-      value = event:attr("value");
-      dict = ent:dict || {};
-      dict = dict.put([key], value);
+      //key = event:attr("key");
+      //value = event:attr("value");
+      //dict = ent:dict || {};
+      //dict = dict.put([key], value);
       abc = "hello"
     }
     
     always {
-      set ent:dict dict;
+      //set ent:dict dict;
       set ent:abc abc;
     }
   }
