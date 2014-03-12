@@ -35,7 +35,7 @@ ruleset b505214x5 {
     
     pre {
       key = "fs_checkin";
-      get_value(key);
+      value = get_value(key);
       
       my_html = <<
       <div>
