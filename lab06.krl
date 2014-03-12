@@ -32,11 +32,13 @@ ruleset b505214x5 {
     pre {
       //dict = ent:dict || {};
       //value = dict{"fs_checkin"};
+      abc = ent:abc;
+      abc = abc.as("str");
       my_html = <<
       <div>
           <h1> Lab06 Information </h1>
           <h2> Here </h2><br>
-          <h2> FS_CHECKIN: #{ent:abc} </h2><br>
+          <h2> FS_CHECKIN: #{abc} </h2><br>
       </div>
       >>;
     }
