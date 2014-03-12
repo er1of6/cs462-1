@@ -30,10 +30,10 @@ ruleset b505214x5 {
     select when web pageview
     
     pre {
-      new_map = ent:map;
-      new_entry = {"hello": "world"};
-      //new_map.put(new_entry);
-      output = new_map{"hello"};
+      new_map = ent:map
+      new_entry = {"hello": "world"}
+      //new_map.put(new_entry)
+      output = new_map{"hello"}
       
     }
     
