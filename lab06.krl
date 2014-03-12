@@ -13,17 +13,16 @@ ruleset b505214x5 {
   
   rule add_location_item {
     select when pds new_location_data
+    
     pre {
-      //key = event:attr("key");
-      //value = event:attr("value");
-      //dict = ent:dict || {};
-      //dict = dict.put([key], value);
-      abc = "hello"
+      key = event:attr("key");
+      value = event:attr("value");
+      theDict = ent:dict;
+      theOtherDict = theDict.put([key], value);
     }
     
     always {
-      //set ent:dict dict;
-      set ent:abc abc;
+      set ent:dict theOtherDict;
     }
   }
   
@@ -31,15 +30,16 @@ ruleset b505214x5 {
     select when web cloudAppSelected
     
     pre {
-      //dict = ent:dict || {};
-      //value = dict{"fs_checkin"};
-      abc = ent:abc;
-      abc = abc.as("str");
+      theDict = ent:dict;
+      
+      key = "fs_checkin";
+      value = theDict{key};
+      
       my_html = <<
       <div>
           <h1> Lab06 Information </h1>
-          <h2> Here </h2><br>
-          <h2> FS_CHECKIN: #{abc} </h2><br>
+          <h2> Key: #{key} </h2><br>
+          <h2> Value: #{value} </h2><br>
       </div>
       >>;
     }
@@ -47,7 +47,6 @@ ruleset b505214x5 {
     every {
       SquareTag:inject_styling();
       CloudRain:createLoadPanel("Lab06", {}, my_html);
-      //notify("MAP", dict.as("str"));
     }
   }
 }
