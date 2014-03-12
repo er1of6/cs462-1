@@ -23,6 +23,9 @@ ruleset b505214x4 {
       set ent:shout shout;
       set ent:name name;
       set ent:city city;
+      raise explicit event new_location_data for b505214x5
+                with key = "fs_checkin"
+                and value = "hello";
     }
   }
   
@@ -44,9 +47,6 @@ ruleset b505214x4 {
     every {
       SquareTag:inject_styling();
       CloudRain:createLoadPanel("Lab05", {}, my_html);
-      raise explicit event new_location_data for b505214x5
-                with key = "fs_checkin"
-                and value = "hello";
     }
   }
 }
