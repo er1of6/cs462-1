@@ -7,15 +7,6 @@ ruleset b505214x4 {
     use module a41x186  alias SquareTag
   }
   
-  rule abcdef {
-    select when web pageview
-    
-    always {
-      raise pds event 'new_location_data' for 'b505214x5' with key="fs_checkin" and value="foo";
-    }
-    
-  }
-
   rule process_checking {
     select when foursquare checkin
     pre {
@@ -31,6 +22,7 @@ ruleset b505214x4 {
       set ent:shout shout;
       set ent:name name;
       set ent:city city;
+      raise pds event 'new_location_data' for 'b505214x5' with key="fs_checkin" and value="foo";
     }
     
   }
