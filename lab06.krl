@@ -18,11 +18,12 @@ ruleset b505214x5 {
       value = event:attr("value");
       dict = ent:dict || {};
       dict = dict.put([key], value);
+      abc = "hello"
     }
     
     always {
       set ent:dict dict;
-      set ent:abc "hello";
+      set ent:abc abc;
     }
   }
   
