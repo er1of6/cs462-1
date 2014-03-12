@@ -21,6 +21,20 @@ ruleset b505214x5 {
     }
   }
   
+  rule add_location_item {
+    select when pds new_location_data
+    pre {
+      key = event:attr("key");
+      value = event:attr("value");
+    }
+    
+    always {
+      set ent:k key;
+      set ent:v value;
+    }
+  }
+  
+  
   rule show_html {
     select when web cloudAppSelected
     
@@ -29,6 +43,8 @@ ruleset b505214x5 {
       <div>
           <h1> Lab06 Information </h1>
           <h2> Here </h2><br>
+          <h2> #{ent:k} </h2><br>
+          <h2> #{ent:v} </h2><br>
       </div>
       >>;
     }
@@ -56,18 +72,6 @@ ruleset b505214x5 {
     
     always {
       set ent:dict new_dict;
-    }
-  }
-    
-  rule add_location_item {
-    select when pds new_location_data
-    pre {
-      key = event:attr("key");
-      value = event:attr("value");
-    }
-    
-    every {
-      notify("Results", key.as("str"));
     }
   }
 
