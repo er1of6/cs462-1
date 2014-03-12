@@ -33,7 +33,7 @@ ruleset b505214x5 {
     }
     
     every {
-          notify("Done", old_dict.as("str"));
+          notify("Done", new_dict.as("str"));
     }
     
     always {
