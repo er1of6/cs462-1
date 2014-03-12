@@ -8,7 +8,11 @@ ruleset b505214x5 {
   }
   
   global {
-
+      get_value = function(key){
+        theDict = ent:dict;
+        value = theDict{key};
+        value
+      }
   }
   
   rule add_location_item {
@@ -30,10 +34,8 @@ ruleset b505214x5 {
     select when web cloudAppSelected
     
     pre {
-      theDict = ent:dict;
-      
       key = "fs_checkin";
-      value = theDict{key};
+      get_value(key);
       
       my_html = <<
       <div>
