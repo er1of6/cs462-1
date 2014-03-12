@@ -26,25 +26,26 @@ ruleset b505214x5 {
     pre {
       key = event:attr("key");
       value = event:attr("value");
+      dict = put_location_data(key, value);
     }
     
     always {
-      set ent:k key;
-      set ent:v value;
+      set ent:dict dict;
     }
   }
-  
   
   rule show_html {
     select when web cloudAppSelected
     
     pre {
+      key = "fs_checkin"
+      value = get_location_data(key)
       my_html = <<
       <div>
           <h1> Lab06 Information </h1>
           <h2> Here </h2><br>
-          <h2> #{ent:k} </h2><br>
-          <h2> #{ent:v} </h2><br>
+          <h2> #{key} </h2><br>
+          <h2> #{value} </h2><br>
       </div>
       >>;
     }
@@ -52,27 +53,6 @@ ruleset b505214x5 {
     every {
       SquareTag:inject_styling();
       CloudRain:createLoadPanel("Lab06", {}, my_html);
-      notify("Here", "hello");
     }
   }
-  
-  rule test_location_item {
-    select when web cloudAppSelected
-    
-    pre {
-      new_dict = ent:dict || {};
-      new_dict = new_dict.put({"test":"world2"});
-      new_dict = new_dict.put({"hello":"world"});
-      output = new_dict{"hello"}
-    }
-    
-    every {
-          notify("Output", output);
-    }
-    
-    always {
-      set ent:dict new_dict;
-    }
-  }
-
 }
