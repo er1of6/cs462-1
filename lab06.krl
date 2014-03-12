@@ -5,10 +5,12 @@ ruleset b505214x5 {
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
+    
+    provides get_location_data
   }
   
   global {
-      get_value = function(key){
+      get_location_data = function(key){
         theDict = ent:dict;
         value = theDict{key};
         value
@@ -35,7 +37,7 @@ ruleset b505214x5 {
     
     pre {
       key = "fs_checkin";
-      value = get_value(key);
+      value = get_location_data(key);
       
       my_html = <<
       <div>
