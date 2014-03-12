@@ -24,7 +24,7 @@ ruleset b505214x5 {
       key = event:attr("key");
       value = event:attr("value");
       theDict = ent:dict;
-      theOtherDict = theDict.put([key], value);
+      theOtherDict = theDict.put([key], value.encode());
     }
     
     always {
