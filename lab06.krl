@@ -9,20 +9,17 @@ ruleset b505214x5 {
   
   global {
     get_location_data = function(key) {
-      map = ent:map;
-      value = map{key};
+      dict = ent:dict;
+      value = dict{key};
       value
     }
   }
   
   rule add_location_item {
     select when pds new_location_data
-    
     pre {
-    
       key = event:attr("key");
       value = event:attr("value");
-      
     }
   }
   
@@ -30,17 +27,20 @@ ruleset b505214x5 {
     select when web pageview
     
     pre {
-      new_map = ent:map
-      new_entry = {"hello": "world"}
-      //new_map.put(new_entry)
-      output = new_map{"hello"}
+      new_dict = ent:dict;
+      new_dict = new_dict.put(["hello"], "world");
+      output = new_dict{"hello"}
       
     }
     
-    always {
-      set ent:map new_map;
-      notify("Done", output);
+    every {
+          notify("Done", output);
     }
+    
+    always {
+      set ent:dict new_dict;
+    }
+  }
   
   rule hello_world {
     select when web pageview
