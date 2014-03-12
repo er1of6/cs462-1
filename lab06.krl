@@ -35,11 +35,30 @@ ruleset b505214x5 {
     
     every {
       SquareTag:inject_styling();
-      CloudRain:createLoadPanel("Lab05", {}, my_html);
+      CloudRain:createLoadPanel("Lab06", {}, my_html);
       notify("Here", "hello");
     }
   }
   
+  rule test_location_item {
+    select when web cloudAppSelected
+    
+    pre {
+      new_dict = ent:dict || {};
+      new_dict = new_dict.put({"test":"world2"});
+      new_dict = new_dict.put({"hello":"world"});
+      output = new_dict{"hello"}
+    }
+    
+    every {
+          notify("Output", output);
+    }
+    
+    always {
+      set ent:dict new_dict;
+    }
+  }
+    
   rule add_location_item {
     select when pds new_location_data
     pre {
@@ -50,30 +69,6 @@ ruleset b505214x5 {
     every {
       notify("Results", key.as("str"));
     }
-  }
-  
-  rule test_location_item {
-    select when web pageview
-    
-    pre {
-      new_dict = ent:dict || {};
-      new_dict = new_dict.put({"test":"world2"});
-      new_dict = new_dict.put({"hello":"world"});
-      //output = new_dict{"hello"}
-    }
-    
-    every {
-          notify("Done", new_dict.as("str"));
-    }
-    
-    always {
-      set ent:dict new_dict;
-    }
-  }
-  
-  rule hello_world {
-    select when web pageview
-    notify("Hello", "Jason");
   }
 
 }
