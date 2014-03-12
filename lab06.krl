@@ -30,8 +30,7 @@ ruleset b505214x5 {
     
     pre {
       //dict = ent:dict || {};
-      //value = dict{"fs_checkin"};
-      value = "asd";
+      value = dict{"fs_checkin"};
       my_html = <<
       <div>
           <h1> Lab06 Information </h1>
