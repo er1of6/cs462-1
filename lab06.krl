@@ -13,6 +13,13 @@ ruleset b505214x5 {
       value = dict{key};
       value
     }
+    
+    put_location_data = function(key, value){
+      dict = ent:dict || {};
+      dict = dict.put({key.as("str"):value.as("str")});
+      set ent:dict dict;
+      dict
+    }
   }
   
   rule add_location_item {
