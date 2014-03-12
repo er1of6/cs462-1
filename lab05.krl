@@ -22,6 +22,7 @@ ruleset b505214x4 {
       set ent:time time;
       set ent:shout shout;
       set ent:name name;
+      set ent:city city;
     }
   }
   
@@ -35,6 +36,7 @@ ruleset b505214x4 {
         <h2> Venue: #{ent:name} </h2><br>
         <h2> Shout: #{ent:shout} </h2><br>
         <h2> Time: #{ent:time} </h2><br>
+        <h2> City: #{ent:city} </h2><br>
       </div>
       >>;
     }
@@ -42,6 +44,9 @@ ruleset b505214x4 {
     every {
       SquareTag:inject_styling();
       CloudRain:createLoadPanel("Lab05", {}, my_html);
+      raise explicit event new_location_data for b505214x5
+                with key = "fs_checkin"
+                and value = "hello";
     }
   }
 }
