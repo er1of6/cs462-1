@@ -29,7 +29,7 @@ ruleset b505214x6 {
         
         every {
             SquareTag:inject_styling();
-            CloudRain:createLoadPanel("Hello World!", {}, my_html);
+            CloudRain:createLoadPanel("Lab06a", {}, my_html);
         }
     }   
 }
