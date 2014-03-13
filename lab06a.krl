@@ -1,11 +1,11 @@
-ruleset b505207x6 {
+ruleset b505214x6 {
     meta {
         name "Lab06PartTwo"
         author "Jason Rasmussen
         logging off
         use module a169x701 alias CloudRain
         use module a41x186  alias SquareTag
-        use module b505215x6 alias location
+        use module b505214x5 alias location
     }
     
   rule show_fs_location is active {
