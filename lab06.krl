@@ -27,6 +27,8 @@ ruleset b505214x5 {
       theOtherDict = theDict.put([key], value.encode());
     }
     
+    send_directive(key) with key = "location" and value = value;
+    
     always {
       set ent:dict theOtherDict;
     }
