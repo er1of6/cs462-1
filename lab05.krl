@@ -18,6 +18,8 @@ ruleset b505214x4 {
       data = { 'venue' : name, 'city' : city, 'shout' : shout, 'createdAt' : time } 
     }
     
+    send_directive(name) with key = 'checkin' and value = name;
+    
     always {
       set ent:time time;
       set ent:shout shout;
